@@ -10,11 +10,11 @@ class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200))
 
-@app.route('/notes', methods=['GET'])
+@app.route('/api/notes', methods=['GET'])
 def get_notes():
     return jsonify([{'id': note.id, 'content': note.content} for note in Note.query.all()])
 
-@app.route('/notes', methods=['POST'])
+@app.route('/api/notes', methods=['POST'])
 def create_note():
     data = request.get_json()
     note = Note(content=data['content'])
